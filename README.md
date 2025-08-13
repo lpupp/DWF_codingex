@@ -4,7 +4,7 @@ This repository contains two independent exercises, each in its own folder.
 
 ## Ex1: Fixed-Size Hash Table
 
-Implements a fixed-size hash table with linear probing collision resolution, using words from A Tale of Two Cities (Gutenberg link)[https://www.gutenberg.org/files/98/98-0.txt] as keys and integers as values.
+Implements a fixed-size hash table with linear probing collision resolution, using words from A Tale of Two Cities [Gutenberg link](https://www.gutenberg.org/files/98/98-0.txt) as keys and integers as values.
 
 Supports O(1) operations:
 - `insert(key, value)`: inserts a new key-value pair or replaces a key's existing value,

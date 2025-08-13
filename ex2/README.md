@@ -1,13 +1,13 @@
 # Binance USDⓈ-M Futures aggTrades Stream Parser
 ## Overview
 
-This script connects to Binance’s USDⓈ-M Futures Aggregate Trades (aggTrades) endpoint, retrieves recent trades via REST, then switches to a WebSocket stream for live updates. It parses each trade into the required format and optionally measures per-trade parse latency.
+This script connects to Binance’s USDⓈ-M Futures Aggregate Trades (aggTrades) endpoint, retrieves recent trades via REST, then switches to a WebSocket stream for live updates. It parses each trade into the required format and measures per-trade parse latency.
 
 ## Features:
 - Initialize aggTrade data via REST: GET /fapi/v1/aggTrades to fetch recent trades.
 - Live streaming via WebSocket: <symbol>@aggTrade for real-time updates.
 - Deduplication: Drops trades already received from the REST initialization.
-- Exact output shape: Prints each trade as:
+- Exact output shape (prints each trade as):
 ```
 [
   {
@@ -21,7 +21,7 @@ This script connects to Binance’s USDⓈ-M Futures Aggregate Trades (aggTrades
   }
 ]
 ```
-- Optional latency metrics: Reports p50/p95 parse time in microseconds.
+- Latency metrics: Reports p50/p95 parse time in microseconds.
 
 ## Requirements
 - Python 3.9+
@@ -47,7 +47,7 @@ python aggtrade_stream.py --symbol ETHUSDT --limit 500 --print-speed
 Parsing algorithm:
 - Per message:
   - JSON decode: O(m), where m = message size (bounded and small → treated as O(1))
-  - Field extraction and dedupe check: O(1)
+  - Data extraction and dedupe check: O(1)
   - Output formatting: O(1)
 - Total over N messages: O(N) time.
 

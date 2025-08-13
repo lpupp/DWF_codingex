@@ -25,7 +25,7 @@ This project implements a fixed-size hash table for string keys and integer valu
 - `get_first()`
     Returns (key, value) for the least recently inserted or updated entry.
 
-- Fixed capacity
+- Fixed capacity:
     Size is set at initialization and never grows.
     Raises `RuntimeError` if the table is full and no tombstones are available.
 
@@ -72,7 +72,8 @@ An alternative is to shift subsequent elements backward to fill the gap, which a
 ### Recency Tracking
 Uses a doubly linked list over occupied slots for O(1) recency updates:
 - Insert/update → move node to head
-- get_first() → returns tail
+- `get_first()` → returns tail
+- `get_last()` → returns head
 - Remove → unlink node
 
 ### Space and Capacity Considerations
@@ -103,14 +104,12 @@ except KeyError:
 
 ## Testing
 
-Test plan:
+Brief manual testing was conducted in `sandbox/hash_table.ipynb` to weakly verify correctness. Extensive testing can/should be conducted on full set of features:
 - Basic inserts, updates, and removals
 - Collision chains, tombstone reuse, wrap-around probes
 - Saturation handling (full table)
 - Recency list correctness
 - Edge cases: empty table, all tombstones
-
-Brief manual testing was conducted in `sandbox/hash_table.ipynb` to weakly verify correctness. Extensive testing can/should be conducted on full set of features.
 
 ## Note on Corpus Processing
 A brief corpus exploration was conducted in `sandbox/corpus.ipynb` to verify that the source text was generally well-behaved.
